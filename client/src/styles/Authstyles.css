@@ -1,0 +1,63 @@
+
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    flex-direction: column;
+    background: linear-gradient(135deg, #e6e6fa, #d8bfd8); /* Lavender gradient */
+
+}
+.form-container form{
+    box-shadow: rgba(0,0,0,0.35)0px 5px 15px;
+    padding: 20px;
+    background-color: #fff;
+}
+.form-container .title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-family: 'playfair Display',serif;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background-color: transparent;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.form-group input:focus {
+    border-bottom: 1px solid #000;
+    background-color: white;
+    color: black;
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+.btn-primary {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
