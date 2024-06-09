@@ -11,7 +11,7 @@ const ForgotPassword = () => {
     
   const [email, setEmail] = useState();
   const [newPassword, setNewPassword] = useState();
-  const [newAnswer, setNewAnswer] = useState();
+  const [answer, setAnswer] = useState();
  
   const navigate= useNavigate();
   
@@ -21,9 +21,9 @@ const ForgotPassword = () => {
       //handel api request
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
-        {  email, newPassword,newAnswer }
+        {  email, newPassword,answer }
       );
-      if(res.data.success){
+      if(res && res.data.success){
         toast.success(res.data.message)
        
         navigate('/login')
@@ -57,8 +57,8 @@ const ForgotPassword = () => {
           <div className="mb-3">
             <input
               type="text"
-              value={newAnswer}
-              onChange={(e) => setNewAnswer(e.target.value)}
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
               className="form-control"
               id="exampleInputanswer"
               placeholder="Your Best Friend?"
