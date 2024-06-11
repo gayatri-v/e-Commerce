@@ -158,3 +158,9 @@ try {
    res.send(error); 
 }
 }
+
+//dashboard
+
+export const sendOk=(req,res)=>{
+    res.status(200).send({ok: true});
+} 
