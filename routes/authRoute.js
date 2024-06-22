@@ -22,4 +22,7 @@ router.get('/test',requireSignIn,isAdmin,testController)
 //protected route auth
 router.get('/user-auth',requireSignIn,sendOk)
 
+//admin dashboard protected route
+router.get('/admin-auth',requireSignIn,isAdmin,sendOk)
+
 export default router

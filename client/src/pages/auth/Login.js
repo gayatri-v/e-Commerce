@@ -23,18 +23,23 @@ const Login = () => {
       );
       if(res.data.success){
         toast.success(res.data.message)
+        console.log(res.data.user.token)
         setAuth({
             ...auth,
             user: res.data.user,
             token: res.data.token,
         });
         localStorage.setItem('auth',JSON.stringify(res.data))
+        // console.log(location.state)
+        // setTimeout(() => {
+          
+        // }, 5000);
         navigate(location.state||'/')
       }else{
         toast.error(res.data.message)
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.res.data);
       toast.error("something went wrong");
     }
   };

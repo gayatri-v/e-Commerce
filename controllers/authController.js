@@ -93,12 +93,15 @@ export const loginController=async(req,res)=>{
         message:'Login Successfully',
     
         user:{
+            _id:user._id,
           name:user.name,
           email:user.email,
           address:user.address,
           phone:user.phone,
-          token
-        }
+          role:user.role,
+          
+        },
+        token,
     })
    } catch (error) {
     console.log(error);
@@ -162,5 +165,5 @@ try {
 //dashboard
 
 export const sendOk=(req,res)=>{
-    res.status(200).send({ok: true});
+  return  res.status(200).send({ok: true});
 } 
