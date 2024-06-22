@@ -24,8 +24,11 @@ const CreateCategory = () => {
     }
   }
   useEffect(()=>{
-    if(!loading){
-      <Layout title={"Dashboard- Create Category"}>
+    
+  getAllCategory();
+  },[])
+  if(!loading){
+    return ( <Layout title={"Dashboard- Create Category"}>
       <div className="container-fluid m-3 p-3" >
       <div className="row">
           <div className="col-md-3">
@@ -59,10 +62,7 @@ const CreateCategory = () => {
       </div>
   
   </Layout>
-    
+    )
   }
-  getAllCategory();
-  },[])
-  
 }
 export default CreateCategory
