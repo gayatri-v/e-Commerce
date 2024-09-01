@@ -8,6 +8,7 @@ const CategoryList = () => {
     const params=useParams();
     const getProductByCat=async()=>{
         try {
+          console.log(params.slug)
             const {data}=await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-category/${params.slug}`)
             setProducts(data?.products)
             setCategory(data?.category)
@@ -20,10 +21,12 @@ const CategoryList = () => {
         getProductByCat();
      }
     },[params?.slug])
+    console.log(products)
   return (
     <Layout>
    <div className="container">
     <h1 className='text-center mt-3'>{category?.name}</h1>
+    <h1>{products.name}</h1>
    </div>
     </Layout>
   )

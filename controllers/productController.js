@@ -312,10 +312,10 @@ export const relatedProductController = async (req, res) => {
 export const productCategoryController = async (req, res) => {
   try {
     const category = await CategoryModel.findOne({ slug: req.params.slug });
-
     const products = await ProductModel.find(
-      { category: category._id }.populate("category")
-    );
+      { category: category._id }
+    ).populate("category");
+    console.log(products)
     res.status(200).send({
       success: true,
       category,

@@ -46,6 +46,8 @@ export default function Header() {
                   Home
                 </NavLink>
               </li>
+
+              
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -112,7 +114,7 @@ export default function Header() {
                       <li>
                         <NavLink
                           onClick={handelLogout}
-                          to="/login"
+                          to="/"
                           className="dropdown-item"
                         >
                           Logout
