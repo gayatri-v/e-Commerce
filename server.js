@@ -6,15 +6,11 @@ import authRoute from './routes/authRoute.js';
 import cors from 'cors';
 import CategoryRoutes from './routes/CategoryRoutes.js'
 import ProductRoutes from './routes/ProductRoutes.js'
-import path from 'path'
-import { fileURLToPath} from 'url';
 dotenv.config()
 
 
 //database config
 connectDB();
-const __filename=fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename)
 
 
 //rest object
@@ -26,7 +22,6 @@ const app=express()
 app.use(cors());
 app.use(express.json())
 app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname,'./client/build')))
 
 //routes all 
 
@@ -35,10 +30,9 @@ app.use('/api/v1/category',CategoryRoutes)
 app.use('/api/v1/product',ProductRoutes)
 
 
-
-app.use('*',function(req,res){
-    res.sendFile(path.join(__dirname,'/client/build/index.html'))
-})
+app.get('/',(req,res)=>{
+    res.send("<h1>Welcome to the ecommerce Web App</h1>");
+});
 
 const PORT =process.env.PORT||8000;
 
