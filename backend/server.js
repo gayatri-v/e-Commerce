@@ -6,6 +6,7 @@ import authRoute from './routes/authRoute.js';
 import cors from 'cors';
 import CategoryRoutes from './routes/CategoryRoutes.js'
 import ProductRoutes from './routes/ProductRoutes.js'
+import ProductModel from './models/ProductModel.js';
 dotenv.config()
 
 
@@ -39,3 +40,32 @@ const PORT =process.env.PORT||8000;
 app.listen(8000,()=>{
     console.log(`Server running on the ${PORT}`)
 })
+
+// Webhook endpoint
+app.post('/webhook', async (req, res) => {
+    const { queryResult } = req.body;
+    const intentName = queryResult.intent.displayName;
+    let responseText = '';
+  
+
+    if (intentName === 'order.add-contex:ongoing-order') {
+        const productNames = queryResult.parameters['beauty-product'];
+    
+        try {
+          const products = await ProductModel.find({ name: { $in: productNames } });
+    
+          if (products.length > 0) {
+            responseText = `We've added ${products.map(p => p.name).join(', ')} to your order.`;
+          } else {
+            responseText = `Sorry, we couldn't find the products you're looking for.`;
+          }
+        } catch (error) {
+          console.error('Error fetching products:', error);
+          responseText = 'There was an error processing your request. Please try again later.';
+        }
+      } else {
+        responseText = 'Sorry, I did not understand your request.';
+      }
+    
+      res.json({ fulfillmentText: responseText });
+    });
