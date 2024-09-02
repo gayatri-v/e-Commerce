@@ -46,10 +46,10 @@ app.post('/webhook', async (req, res) => {
     const { queryResult } = req.body;
     const intentName = queryResult.intent.displayName;
     let responseText = '';
-  
+   
 
-    if (intentName === 'order.add-contex:ongoing-order') {
-        const productNames = queryResult.parameters['beauty-product'];
+    if (intentName === 'order.add-context:ongoing-order') {
+        const productNames = queryResult.parameters['beauty-products'];
     
         try {
           const products = await ProductModel.find({ name: { $in: productNames } });
@@ -69,3 +69,4 @@ app.post('/webhook', async (req, res) => {
     
       res.json({ fulfillmentText: responseText });
     });
+
